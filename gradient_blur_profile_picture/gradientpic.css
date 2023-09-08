@@ -1,0 +1,50 @@
+.content-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.gradient-pic-container {
+  display: grid;
+
+/*the grid stuff is to make it so that the gradient gets position exactly behind the picture by placing them both in the same cell of a grid */
+  > img {
+    grid-column: 1;
+    grid-row: 1;
+    border-radius: 50%;
+    width: 70%;
+    z-index: 100;
+  }
+
+  > .bubble {
+    grid-column: 1;
+    grid-row: 1;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    filter: blur(15px);
+    opacity: 0.5;
+
+    animation: border_radius_transform 12s ease-in-out infinite both alternate, blob_movement 18s ease-in-out infinite both;
+  }
+}
+
+@keyframes border_radius_transform
+{
+    0%,
+  100% { border-radius: 33% 67% 70% 30% / 30% 40% 70% 70%; } 
+   20% { border-radius: 37% 63% 51% 49% / 37% 35% 35% 63%; } 
+   40% { border-radius: 36% 64% 64% 36% / 64% 48% 52% 26%; } 
+   60% { border-radius: 37% 63% 51% 49% / 30% 30% 70% 73%; } 
+   80% { border-radius: 40% 60% 42% 58% / 51% 51% 49% 59%; } 
+}
+
+
+@keyframes blob_movement
+{
+    0%,
+  100% { transform: none; }
+   50% { transform: translate(10%, 5%) rotateY(+40deg) scale(1); }
+}
+
